@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cypress:open": "cypress open",
+    "cypress:run": "cypress run --reporter mochawesome",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,5 +13,11 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^8.7.0"
+  },
+  "dependencies": {
+    "faker": "^5.5.3",
+    "mocha": "^5.2.0",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.0"
   }
 }

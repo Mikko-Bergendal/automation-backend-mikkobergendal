@@ -1,0 +1,100 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-11-24T19:22:25.825Z",
+    "end": "2021-11-24T19:22:27.371Z",
+    "duration": 1546,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2a5436c4-72b3-4d3c-8965-f44916609bb0",
+      "title": "",
+      "fullFile": "cypress/integration/test-suite-backend.spec.js",
+      "file": "cypress/integration/test-suite-backend.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e4520eff-64f6-468f-8f34-75b1453dbd94",
+          "title": "testing auth",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "test case 2",
+              "fullTitle": "testing auth test case 2",
+              "timedOut": null,
+              "duration": 1320,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.authenticateSession().then(response => {\n  let fakeClientPayload = clientHelpers.createRandomClientPayload();\n  cy.request({\n    method: \"POST\",\n    url: 'http://localhost:3000/api/client/new',\n    headers: {\n      'X-User-Auth': JSON.stringify(Cypress.env().loginToken),\n      'Content-Type': 'application/json'\n    },\n    body: fakeClientPayload\n  }).then(response => {\n    const responseAsString = JSON.stringify(response);\n    expect(responseAsString).to.have.string(fakeClientPayload.name);\n  }); // GET request to fetch all clients\n  cy.request({\n    method: \"GET\",\n    url: 'http://localhost:3000/api/clients',\n    headers: {\n      'X-User-Auth': JSON.stringify(Cypress.env().loginToken),\n      'Content-Type': 'application/json'\n    }\n  }).then(response => {\n    const responseAsString = JSON.stringify(response);\n    expect(responseAsString).to.have.string(fakeClientPayload.name);\n    expect(responseAsString).to.have.string(fakeClientPayload.email);\n    expect(responseAsString).to.have.string(fakeClientPayload.telephone);\n  });\n});",
+              "err": {},
+              "uuid": "e01e9027-865b-4790-8ec9-0d7bada1b95a",
+              "parentUUID": "e4520eff-64f6-468f-8f34-75b1453dbd94",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e01e9027-865b-4790-8ec9-0d7bada1b95a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1320,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.0.1"
+    }
+  }
+}
