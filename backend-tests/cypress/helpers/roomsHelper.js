@@ -7,7 +7,7 @@ function createRoomRequestAndDelete(cy){
     cy.authenticateSession().then((response =>{
         const fakeRoomPayload = {
         "category": faker.random.arrayElement(['double', 'single', 'twin']),
-        "features": faker.random.arrayElement(['Balcony', 'Ensuite', 'Sea View', 'Penthouse']),
+        "features": faker.random.arrayElements(['Balcony', 'Ensuite', 'Sea View', 'Penthouse']),
         "floor": faker.datatype.number(),
         "number": faker.datatype.number(),
         "price" : faker.datatype.number()
@@ -22,7 +22,7 @@ function createRoomRequestAndDelete(cy){
             body: fakeRoomPayload
         }).then((response  =>{
             const responseAsString = JSON.stringify(response)
-            expect(responseAsString).to.have.string(fakeRoomPayload.number)
+            expect(responseAsString).to.have.string(fakeRoomPayload.floor)
         }))
        
         cy.request({
