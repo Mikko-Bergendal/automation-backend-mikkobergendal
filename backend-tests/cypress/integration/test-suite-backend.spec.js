@@ -1,59 +1,33 @@
 /// <reference types="cypress" />
 
+import * as billsHelpers from '../helpers/billsHelper'
 import * as clientHelpers from '../helpers/clientHelpers'
+import * as roomsHelpers from '../helpers/roomsHelper'
 
-describe('testing auth', function(){
-  it ('test case 1', function(){
-      cy.authenticateSession().then((response =>{
-          cy.request({
-            method: "GET",
-            url: 'http://localhost:3000/api/clients',
-            headers:{
-                'X-User-Auth': JSON.stringify(Cypress.env().loginToken),
-                'Content-Type': 'application/json'
-            },
-          }).then((response =>{
-              cy.log(response.body[0].id)
-              cy.log(response.body[0].created)
-              cy.log(response.body[0].name)
-              cy.log(response.body[0].email)
-              cy.log(response.body[0].telephone)
-          }))
-      }))
-  })
+describe('test suite 1', function(){
+  
 
   // POST request to create client
-  it.only ('test case 2', function(){
-      cy.authenticateSession().then((response =>{
-          let fakeClientPayload = clientHelpers.createRandomClientPayload()
-          cy.request({
-              method: "POST",
-              url: 'http://localhost:3000/api/client/new',
-              headers: {
-                  'X-User-Auth': JSON.stringify(Cypress.env().loginToken),
-                  'Content-Type': 'application/json'
-              },
-              body: fakeClientPayload
-          }).then((response  =>{
-              const responseAsString = JSON.stringify(response)
-              expect(responseAsString).to.have.string(fakeClientPayload.name)
-          }))
-          // GET request to fetch all clients
-          cy.request({
-            method: "GET",
-            url: 'http://localhost:3000/api/clients',
-            headers:{
-                'X-User-Auth': JSON.stringify(Cypress.env().loginToken),
-                'Content-Type': 'application/json'
-            },
-          }).then((response =>{
-            const responseAsString = JSON.stringify(response)
-            expect(responseAsString).to.have.string(fakeClientPayload.name)
-            expect(responseAsString).to.have.string(fakeClientPayload.email)
-            expect(responseAsString).to.have.string(fakeClientPayload.telephone)
-          }))
-      }))
-  })
+    it ('Create a new client', function(){
+        clientHelpers.createClientRequest(cy)
+    })
+
+  // GET request to fetch all clients
+    it ('Get all clients', function(){
+        clientHelpers.getAllClientsRequest(cy)
+    })
+
+    it ('Create a client and delete it', function(){
+        clientHelpers.createClientRequestAndDelete(cy)
+    })
+
+    it ('Create a bill and delete it', function(){
+        billsHelpers.createBillRequestAndDelete(cy)
+    })
+
+    it ('Create a room and delete it', function(){
+        roomsHelpers.createRoomRequestAndDelete(cy)
+    })
 })
 
 
