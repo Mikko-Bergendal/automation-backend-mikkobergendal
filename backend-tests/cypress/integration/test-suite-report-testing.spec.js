@@ -5,7 +5,7 @@ import * as roomsHelpers from '../helpers/roomsHelper'
 import * as reservationHelpers from '../helpers/reservationsHelper'
 
 describe('test suite 1', function(){
-
+  
     it ('Get all clients', function(){
         clientHelpers.getAllClientsRequest(cy)
     })
@@ -26,8 +26,3 @@ describe('test suite 1', function(){
         reservationHelpers.createReservationRequestAndDelete(cy)
     })
 })
-
-
-
-
-
