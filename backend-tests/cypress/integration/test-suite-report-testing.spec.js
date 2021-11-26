@@ -4,7 +4,7 @@ import * as clientHelpers from '../helpers/clientHelpers'
 import * as roomsHelpers from '../helpers/roomsHelper'
 import * as reservationHelpers from '../helpers/reservationsHelper'
 
-describe('test suite 1', function(){
+describe('Mochawesome-merge test suite', function(){
   
     it ('Get all clients', function(){
         clientHelpers.getAllClientsRequest(cy)

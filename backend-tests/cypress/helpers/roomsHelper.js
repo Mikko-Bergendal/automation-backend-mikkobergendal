@@ -25,7 +25,7 @@ function createRoomRequestAndDelete(cy){
             expect(responseAsString).to.have.string(fakeRoomPayload.floor)
         }))
        
-        /*cy.request({
+        cy.request({
             method: "GET",
             url: ENDPOINT_GET_ROOMS,
             headers:{
@@ -45,7 +45,7 @@ function createRoomRequestAndDelete(cy){
                 const responseAsString = JSON.stringify(response.body)
                 expect(responseAsString).to.have.string('true')
             }))
-          }))*/
+          }))
     }))
 
 }

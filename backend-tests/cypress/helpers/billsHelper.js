@@ -3,7 +3,7 @@ const ENDPOINT_GET_BILLS = 'http://localhost:3000/api/bills'
 const ENDPOINT_GET_BILL  = 'http://localhost:3000/api/bill/'
 const ENDPOINT_POST_BILL = 'http://localhost:3000/api/bill/new'
 
-function createBillRequestAndDelete(cy, value, paid){
+function createBillRequestAndDelete(cy){
     cy.authenticateSession().then((response =>{
         const fakeBillPayload = {
         "value": faker.datatype.number(),
